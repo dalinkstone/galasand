@@ -1,0 +1,6 @@
+# Get firmware versions
+nvram -p > m4max_nvram.txt
+ioreg -l | grep -i firmware > m4max_firmware_refs.txt
+
+# Document boot chain
+bless --info --verbose > m4max_boot_info.txt

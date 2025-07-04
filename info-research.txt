@@ -1,0 +1,24 @@
+# Create your research directory
+mkdir ~/m4max-linux-research
+cd ~/m4max-linux-research
+
+# 1. Detailed hardware topology
+ioreg -l > m4max_ioreg_full.txt
+ioreg -tin > m4max_ioreg_tree.txt
+ioreg -c IOPlatformExpertDevice -r -d 1 -a > m4max_platform.xml
+
+# 2. System configuration
+system_profiler > m4max_system_profiler.txt
+sysctl -a > m4max_sysctl.txt
+
+# 3. Power management data
+pmset -g everything > m4max_power.txt
+sudo powermetrics --samplers all -i 1 -n 10 > m4max_powermetrics.txt
+
+# 4. PCI/Thunderbolt devices
+system_profiler SPThunderboltDataType > m4max_thunderbolt.txt
+system_profiler SPNVMeDataType > m4max_nvme.txt
+
+# 5. Memory and CPU topology
+sysctl hw > m4max_hw.txt
+sysctl machdep.cpu > m4max_cpu.txt
